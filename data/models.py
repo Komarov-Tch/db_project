@@ -33,7 +33,7 @@ class AutorBook(Base):
     """
     __tablename__ = 'autor_book'
     id = sq.Column(sq.Integer, primary_key=True, unique=True, autoincrement=True)
-    id_autor = relationship(Autor, backref='autor_book')
+    id_autor = sq.Column(sq.Integer, sq.ForeignKey('autor.id'), nullable=True)
     id_book = sq.Column(sq.Integer, sq.ForeignKey('book.id'), nullable=False)
 
 
@@ -47,6 +47,7 @@ class Book(Base):
     date = sq.Column(sq.Integer, nullable=True)
     rating = sq.Column(sq.String, nullable=True)
     pages = sq.Column(sq.Integer, nullable=True)
+    id_genre = sq.Column(sq.Integer, sq.ForeignKey('genre.id'), nullable=False)
     publishinghouse = sq.Column(sq.Integer, sq.ForeignKey('publishinghouse.id'), nullable=True)
 
 
